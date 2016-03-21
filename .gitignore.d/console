@@ -1,0 +1,10 @@
+*
+!/.config
+!/.config/ranger
+!/.config/ranger/rc.conf
+!/.config/ranger/rifle.conf
+!/.gitignore.d
+!/.gitignore.d/console
+!/.tmux.conf
+!/.vimrc
+!/.zshrc
