@@ -4,7 +4,7 @@ alias join_dark_side="xrdb -merge $HOME/base16-xresources/base16-$base16_dark_th
 alias join_light_side="xrdb -merge $HOME/base16-xresources/base16-$base16_light_theme.light.xresources"
 
 # TODO: get all colors from Xresources
-background_color=$(xrdb -query | grep "*.background" | awk '{print $2}')
+background_color=$(xrdb -query 2>/dev/null | grep "*.background" | awk '{print $2}')
 # TODO: properly compute luma
 if [[ $background_color[2] == "f" ]]; then
     theme_to_load=$base16_light_theme
