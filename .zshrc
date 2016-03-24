@@ -39,6 +39,33 @@ if ! zplug check --verbose; then
     fi
 fi
 
+# Load packages by zplug after user configuration because some plugins (e.g.
+# zsh-syntax-highlighting) should be loaded "at the end of the .zshrc file"
+zplug load
+
+# zsh-autosuggestions
+#
+# https://github.com/zsh-users/zsh-autosuggestions/blob/master/src/config.zsh
+# forward-char doesn't accept entire suggestion
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-end-of-line)
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
+    forward-char
+    vi-forward-char
+    forward-word
+    vi-forward-word
+    vi-forward-word-end
+    vi-forward-blank-word
+    vi-forward-blank-word-end
+)
+
+# zsh-history-substring-search
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# but fzf should be loaded even after syntax highlighting
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #
 # User defined tweaks
 #
@@ -142,30 +169,3 @@ zle -N ranger-cd
 bindkey '^o' ranger-cd
 alias rg=ranger-cd
 
-# Load packages by zplug after user configuration because some plugins (e.g.
-# zsh-syntax-highlighting) should be loaded "at the end of the .zshrc file"
-zplug load
-
-# zsh-autosuggestions
-#
-# https://github.com/zsh-users/zsh-autosuggestions/blob/master/src/config.zsh
-# forward-char doesn't accept entire suggestion
-ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-end-of-line)
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
-    forward-char
-    vi-forward-char
-    forward-word
-    vi-forward-word
-    vi-forward-word-end
-    vi-forward-blank-word
-    vi-forward-blank-word-end
-)
-
-# zsh-history-substring-search
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
-# but fzf should be loaded even after syntax highlighting
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
