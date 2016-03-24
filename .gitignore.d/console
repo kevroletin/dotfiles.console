@@ -5,6 +5,7 @@
 !/.config/ranger/rifle.conf
 !/.gitignore.d
 !/.gitignore.d/console
+!/.profile
 !/.tmux.conf
 !/.vimrc
 !/.zshrc
