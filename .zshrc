@@ -1,7 +1,7 @@
 base16_dark_theme="default"
 base16_light_theme="solarized"
-alias join_dark_side="xrdb -merge $HOME/base16-xresources/base16-$base16_dark_theme.dark.xresources"
-alias join_light_side="xrdb -merge $HOME/base16-xresources/base16-$base16_light_theme.light.xresources"
+alias join_dark_side="xrdb -merge $HOME/.base16-xresources/base16-$base16_dark_theme.dark.xresources"
+alias join_light_side="xrdb -merge $HOME/.base16-xresources/base16-$base16_light_theme.light.xresources"
 
 # TODO: get all colors from Xresources
 background_color=$(xrdb -query 2>/dev/null | grep "*.background" | awk '{print $2}')
@@ -22,13 +22,13 @@ source ~/.zplug/zplug
 zplug "b4b4r07/zplug"
 # appearance
 zplug "themes/robbyrussell", from:oh-my-zsh
-zplug "chriskempson/base16-shell", of:"base16-$theme_to_load.$theme_color.sh"
+zplug "chriskempson/base16-shell", use:"base16-$theme_to_load.$theme_color.sh"
 # tools
 zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/svn",   from:oh-my-zsh
 zplug "plugins/mercurial",   from:oh-my-zsh
 # customize behavior
-zplug "tarruda/zsh-autosuggestions", of:"zsh-autosuggestions.zsh"
+zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
 zplug "zsh-users/zsh-history-substring-search", nice:18
 zplug "jimmijj/zsh-syntax-highlighting", nice:19
 
