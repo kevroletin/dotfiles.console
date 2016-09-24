@@ -32,6 +32,10 @@ zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
 zplug "zsh-users/zsh-history-substring-search", nice:18
 zplug "jimmijj/zsh-syntax-highlighting", nice:19
 
+zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
+zplug "junegunn/fzf", use:"shell/*.zsh" nice:20
+export PATH=$PATH:~/.zplug/repos/junegunn/fzf/bin # dow't shure how to make same with zplug
+
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -64,8 +68,9 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# but fzf should be loaded even after syntax highlighting
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+SAVEHIST=100
+HISTFILE=~/.zsh_history
+
 #
 # User defined tweaks
 #
