@@ -1,3 +1,4 @@
+bindkey -e
 base16_dark_theme="default"
 base16_light_theme="solarized"
 alias join_dark_side="xrdb -merge $HOME/.base16-xresources/base16-$base16_dark_theme.dark.xresources"
@@ -13,6 +14,7 @@ else
     theme_to_load=$base16_dark_theme
     theme_color=dark
 fi
+
 #
 # Zplug
 #

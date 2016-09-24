@@ -12,5 +12,6 @@ if [ -d $HOME/.profile.d ]; then
 fi
 
 export SHELL=/usr/bin/zsh
+export EDITOR=/usr/bin/vim
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
