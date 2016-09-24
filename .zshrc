@@ -19,9 +19,13 @@ fi
 # Zplug
 #
 
+if [ ! -d "$HOME/.zplug" ]; then
+    curl -sL zplug.sh/installer | zsh
+fi
 source ~/.zplug/init.zsh
 
 zplug "b4b4r07/zplug"
+
 # appearance
 zplug "themes/robbyrussell", from:oh-my-zsh
 zplug "chriskempson/base16-shell", use:"scripts/base16-$theme_to_load-$theme_color.sh"
@@ -34,16 +38,20 @@ zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
 zplug "zsh-users/zsh-history-substring-search", nice:18
 zplug "jimmijj/zsh-syntax-highlighting", nice:19
 
-zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "junegunn/fzf", use:"shell/*.zsh" nice:20
-export PATH=$PATH:~/.zplug/repos/junegunn/fzf/bin # dow't shure how to make same with zplug
-
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+if [[ `uname` == Linux ]]; then
+    zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf, use:"*linux*amd64*"
+    zplug "junegunn/fzf", use:"shell/*.zsh" nice:20
+    export PATH=$PATH:~/.zplug/repos/junegunn/fzf/bin # dow't shure how to make same with zplug
 fi
+
+# No auto updates
+# if ! zplug check --verbose; then
+#     printf "Install? [y/N]: "
+#     if read -q; then
+#         echo; zplug install
+#     fi
+# fi
+DISABLE_AUTO_UPDATE="true"
 
 # Load packages by zplug after user configuration because some plugins (e.g.
 # zsh-syntax-highlighting) should be loaded "at the end of the .zshrc file"
