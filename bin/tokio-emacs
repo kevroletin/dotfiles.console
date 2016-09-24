@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xterm -e "ssh tokio -t \"sh -c 'TERM=xterm-256color /usr/bin/emacs'\""
