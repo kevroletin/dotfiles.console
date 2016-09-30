@@ -29,10 +29,6 @@ zplug "b4b4r07/zplug"
 # appearance
 zplug "themes/robbyrussell", from:oh-my-zsh
 zplug "chriskempson/base16-shell", use:"scripts/base16-$theme_to_load-$theme_color.sh"
-# tools
-zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/svn",   from:oh-my-zsh
-zplug "plugins/mercurial",   from:oh-my-zsh
 # customize behavior
 zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
 zplug "zsh-users/zsh-history-substring-search", nice:18
@@ -78,7 +74,7 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-SAVEHIST=100
+SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 #
