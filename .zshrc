@@ -186,3 +186,13 @@ zle -N ranger-cd
 bindkey '^o' ranger-cd
 alias rg=ranger-cd
 
+# Press M-x to quickly find this function
+_rand_password_stream() { < /dev/urandom tr -dc 'A-Z-a-z-0-9!"#$%&''()*+,-./:;<=>?@[\]^_{|}~,`' }
+
+rand_password() { _rand_password_stream | head -c${1:-8}; echo }
+
+rand_long_password() { _rand_password_stream | head -c${1:-16}; echo }
+
+rand_password_clipboard() { _rand_password_stream | head -c${1:-8} | xi; xo; echo }
+
+rand_long_password_clipboard() { _rand_password_stream | head -c${1:-16} | xi; xo; echo }
