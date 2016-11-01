@@ -25,8 +25,6 @@ if [ ! -d "$HOME/.zplug" ]; then
 fi
 source ~/.zplug/init.zsh
 
-zplug "b4b4r07/zplug"
-
 # appearance
 zplug "themes/robbyrussell", from:oh-my-zsh
 zplug "chriskempson/base16-shell", use:"scripts/base16-$theme_to_load-$theme_color.sh"
@@ -42,16 +40,8 @@ if [[ `uname` == Linux ]]; then
 fi
 
 # No auto updates
-# if ! zplug check --verbose; then
-#     printf "Install? [y/N]: "
-#     if read -q; then
-#         echo; zplug install
-#     fi
-# fi
 DISABLE_AUTO_UPDATE="true"
 
-# Load packages by zplug after user configuration because some plugins (e.g.
-# zsh-syntax-highlighting) should be loaded "at the end of the .zshrc file"
 zplug load
 
 # zsh-autosuggestions
