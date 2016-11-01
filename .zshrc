@@ -1,19 +1,20 @@
 bindkey -e
-base16_dark_theme="default"
-base16_light_theme="solarized"
-alias join_dark_side="xrdb -merge $HOME/.base16-xresources/base16-$base16_dark_theme.dark.xresources"
-alias join_light_side="xrdb -merge $HOME/.base16-xresources/base16-$base16_light_theme.light.xresources"
+alias join_dark_side="xrdb -merge $HOME/.base16-xresources/xresources/base16-default-dark.Xresources"
+alias join_light_side="xrdb -merge $HOME/.base16-xresources/xresources/base16-solarized-light.Xresources"
 
-# TODO: get all colors from Xresources
-background_color=$(xrdb -query 2>/dev/null | grep "*.background" | awk '{print $2}')
-# TODO: properly compute luma
-if [[ $background_color[2] == "f" ]]; then
-    theme_to_load=$base16_light_theme
-    theme_color=light
-else
-    theme_to_load=$base16_dark_theme
-    theme_color=dark
-fi
+enable_theme_based_on_zresources() {
+    base16_dark_theme="default"
+    base16_light_theme="solarized"
+    background_color=$(xrdb -query 2>/dev/null | grep "*.background" | awk '{print $2}')
+    if [[ $background_color[2] == "f" ]]; then
+        theme_to_load=$base16_light_theme
+        theme_color=light
+    else
+        theme_to_load=$base16_dark_theme
+        theme_color=dark
+    fi
+}
+enable_theme_based_on_zresources()
 
 #
 # Zplug
