@@ -1,10 +1,17 @@
 *
+!/bin
+!/bin/org-pull
+!/bin/org-push
+!/bin/tokio-emacs
+!/bootstrap.d
+!/bootstrap.d/console.sh
 !/.config
 !/.config/ranger
 !/.config/ranger/rc.conf
 !/.config/ranger/rifle.conf
 !/.gitignore.d
 !/.gitignore.d/console
+!/.lynxrc
 !/.profile
 !/.tmux.conf
 !/.vimrc
