@@ -1,5 +1,7 @@
 *
 !/bin
+!/bin/generate-agenda.el
+!/bin/mail-agenda.sh
 !/bin/org-pull
 !/bin/org-push
 !/bin/tokio-emacs
