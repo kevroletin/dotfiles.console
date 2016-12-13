@@ -1,6 +1,5 @@
-[$HOME/.config/vcsh/repo.d/console.git]
+[$HOME/.config/vcsh/repo.d/dotfiles.console.git]
 checkout = vcsh clone git@github.com:kevroletin/dotfiles.console.git console || vcsh clone https://github.com/kevroletin/dotfiles.console.git console
-
 
 [$HOME/.zplug]
 checkout = git clone https://github.com/b4b4r07/zplug ~/.zplug --branch 2.3.2
