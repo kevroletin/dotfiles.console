@@ -1,48 +1,55 @@
-bindkey -e
+#
+# Prezto
+#
+
+zstyle ':prezto:*:*' color 'yes'
+# The order matters.
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'spectrum' \
+  'utility' \
+  'completion' \
+  'prompt' \
+  'git' \
+  'history-substring-search' \
+  'autosuggestions' \
+  'syntax-highlighting' \
+  'history'
+  # history should be after autosuggestions otherwise it breaks auto suggestion
+  # (test case: cd ~/.xmonad)
+  # directory cause auto autosuggestion to flush after entering first character from
+  # suggestion
+
+zstyle ':prezto:module:editor' key-bindings 'emacs'
+zstyle ':prezto:module:git:log:context' format 'oneline'
+zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:syntax-highlighting' highlighters \
+  'main' \
+  'brackets' \
+  'pattern' \
+  'line' \
+  'root'
+zstyle ':prezto:module:syntax-highlighting' styles \
+  'builtin' 'bg=blue' \
+  'command' 'bg=blue' \
+  'function' 'bg=blue'
+zstyle ':prezto:module:terminal' auto-title 'yes'
+
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+#
+# Manual config
+#
+
 alias join_dark_side="xrdb -merge $HOME/.base16-xresources/xresources/base16-default-dark.Xresources"
 alias join_light_side="xrdb -merge $HOME/.base16-xresources/xresources/base16-solarized-light.Xresources"
 
-enable_theme_based_on_zresources() {
-    base16_dark_theme="default"
-    base16_light_theme="solarized"
-    background_color=$(xrdb -query 2>/dev/null | grep "*.background" | awk '{print $2}')
-    if [[ $background_color[2] == "f" ]]; then
-        theme_to_load=$base16_light_theme
-        theme_color=light
-    else
-        theme_to_load=$base16_dark_theme
-        theme_color=dark
-    fi
-}
-enable_theme_based_on_zresources()
-
-#
-# Zplug
-#
-
-if [ ! -d "$HOME/.zplug" ]; then
-    curl -sL zplug.sh/installer | zsh
-fi
-source ~/.zplug/init.zsh
-
-# appearance
-zplug "themes/robbyrussell", from:oh-my-zsh
-zplug "chriskempson/base16-shell", use:"scripts/base16-$theme_to_load-$theme_color.sh"
-# customize behavior
-zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
-zplug "zsh-users/zsh-history-substring-search", nice:18
-zplug "jimmijj/zsh-syntax-highlighting", nice:19
-
-if [[ `uname` == Linux ]]; then
-    zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf, use:"*linux*amd64*"
-    zplug "junegunn/fzf", use:"shell/*.zsh" nice:20
-    export PATH=$PATH:~/.zplug/repos/junegunn/fzf/bin # dow't shure how to make same with zplug
-fi
-
-# No auto updates
-DISABLE_AUTO_UPDATE="true"
-
-zplug load
+alias xi="xclip -i -selection clipboard"
+alias xo="xclip -o -selection clipboard"
 
 # zsh-autosuggestions
 #
@@ -64,18 +71,6 @@ bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-
-SAVEHIST=10000
-HISTFILE=~/.zsh_history
-
-#
-# User defined tweaks
-#
-
-alias xi="xclip -i -selection clipboard"
-alias xo="xclip -o -selection clipboard"
-
-[ -f ~/.bash_aliases ] && source $HOME/.bash_aliases
 
 # ALT-X like in Emacs to list available commands
 fzf-locate-widget() {
@@ -187,3 +182,6 @@ rand_long_password() { _rand_password_stream | head -c${1:-16}; echo }
 rand_password_clipboard() { _rand_password_stream | head -c${1:-8} | xi; xo; echo }
 
 rand_long_password_clipboard() { _rand_password_stream | head -c${1:-16} | xi; xo; echo }
+
+# selection framework
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
