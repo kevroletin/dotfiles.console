@@ -17,6 +17,7 @@ zstyle ':prezto:load' pmodule \
   'autosuggestions' \
   'syntax-highlighting' \
   'history'
+
   # history should be after autosuggestions otherwise it breaks auto suggestion
   # (test case: cd ~/.xmonad)
   # directory cause auto autosuggestion to flush after entering first character from
@@ -24,17 +25,13 @@ zstyle ':prezto:load' pmodule \
 
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 zstyle ':prezto:module:git:log:context' format 'oneline'
-zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' theme 'cloud' '$'
 zstyle ':prezto:module:syntax-highlighting' highlighters \
   'main' \
   'brackets' \
   'pattern' \
   'line' \
   'root'
-zstyle ':prezto:module:syntax-highlighting' styles \
-  'builtin' 'bg=blue' \
-  'command' 'bg=blue' \
-  'function' 'bg=blue'
 zstyle ':prezto:module:terminal' auto-title 'yes'
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
