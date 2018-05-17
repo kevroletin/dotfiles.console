@@ -1,9 +1,9 @@
 *
 !/bin
-!/bin/dump-all-memory-of-pid
+!/bin/generate-agenda.el
+!/bin/mail-agenda.sh
 !/bin/org-pull
 !/bin/org-push
-!/bin/tokio-emacs
 !/.config
 !/.config/mr
 !/.config/mr/config.d
@@ -13,6 +13,8 @@
 !/.config/ranger/rifle.conf
 !/.dotfiles_bootstrap.d
 !/.dotfiles_bootstrap.d/console.sh
+!/.ghc
+!/.ghc/ghci.conf
 !/.gitignore.d
 !/.gitignore.d/console
 !/.lynxrc
